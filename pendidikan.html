@@ -52,8 +52,23 @@
         <div class="container">
             <div class="page-header" id="banner">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div id="container" style="width: 900px; height: 600px; margin: 0 auto"></div>
+                    <div class="col-sm-12">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#sd-content" data-toggle="tab" aria-expanded="true">SD</a></li>
+                            <li class=""><a href="#smp-content" data-toggle="tab" aria-expanded="true">SMP</a></li>
+                            <li class=""><a href="#sma-content" data-toggle="tab" aria-expanded="false">SMA/SMK</a></li>
+                            </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div style="height: 2500px"class="tab-pane active" id="sd-content">
+                                <div id="sd" style="width: 900px; height: 2500px; margin: 0 auto"></div>
+                            </div>
+                            <div style="height: 900px" class="tab-pane" id="smp-content">
+                                <div id="smp" style="width: 900px; height: 1000px; margin: 0 auto"></div>
+                            </div>
+                            <div style="height:900px" class="tab-pane" id="sma-content">
+                                <div id="sma" style="width: 900px; height: 1000px; margin: 0 auto"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,7 +80,102 @@
         <script src="https://bootswatch.com/assets/js/custom.js"></script>
         <script type="text/javascript">
         $(document).ready(function() {
+            var optionsSmp = {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: 'Statistik Peserta Didik Berdasarkan Jenis Kelamin'
+                },
+                xAxis: {
+                    categories: [],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                     min: 0,
+                        title: {
+                            text: 'Jumlah Peserta Didik',
+                            align: 'high'
+                        },
+                        labels: {
+                            overflow: 'justify'
+                        }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -40,
+                    y: 80,
+                    floating: true,
+                    borderWidth: 1,
+                    shadow: true
+                },
+                credits: {
+                    enabled: false,
+                },
+                tooltip: {
+                    shared: true
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                series: []
+            };
+
             var options = {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: 'Statistik Peserta Didik Berdasarkan Jenis Kelamin'
+                },
+                xAxis: {
+                    categories: [],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Jumlah Peserta Didik',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -40,
+                    y: 80,
+                    floating: true,
+                    borderWidth: 1,
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                series: []
+            };
+
+            var optionsSma = {
                 chart: {
                     type: 'bar'
                 },
@@ -114,24 +224,47 @@
                 var rows = data.split('\n');
                 var male = [];
                 var female = [];
+                var smpmale = [];
+                var smpfemale = [];
+                var smamale = [];
+                var smafemale = [];
+
                 $.each(rows, function(i, row) {
                     var columns = row.split(',');
                     if (i == 0) {
                         return;
                     }
                     let school = columns[1];
-                    if (typeof school !== 'undefined' && (school.includes('SMA') || school.includes('SMK'))) {
+                    if (typeof school !== 'undefined' && (school.includes('SD'))) {
                         options.xAxis.categories.push(school);
                         male.push(parseInt(columns[3]));
                         female.push(parseInt(columns[4]));
+                    } else if (typeof school !== 'undefined' && (school.includes('SMP'))) {
+                        optionsSmp.xAxis.categories.push(school);
+                        smpmale.push(parseInt(columns[3]));
+                        smpfemale.push(parseInt(columns[4]));
+                    } else if (typeof school !== 'undefined' && (school.includes('SMK') || school.includes('SMA'))) {
+                        optionsSma.xAxis.categories.push(school);
+                        smamale.push(parseInt(columns[3]));
+                        smafemale.push(parseInt(columns[4]));
                     }
                 });
                 options.series = [
                     {name: 'Laki-Laki', data: male},
                     {name: 'Perempuan', data: female}
                 ];
+                optionsSmp.series = [
+                    {name: 'Laki-Laki', data: smpmale},
+                    {name: 'Perempuan', data: smpfemale}
+                ];
+                optionsSma.series = [
+                    {name: 'Laki-Laki', data: smamale},
+                    {name: 'Perempuan', data: smafemale}
+                ];
                 //console.log(options);
-                Highcharts.chart('container', options);
+                Highcharts.chart('sd', options);
+                Highcharts.chart('smp', optionsSmp);
+                Highcharts.chart('sma', optionsSma);
             });
         });
         </script>
