@@ -61,7 +61,9 @@
                         <div id="myTabContent" class="tab-content">
                             <div style="height: 2500px"class="tab-pane active" id="sd-content">
                                 <div id="sd" style="width: 900px; height: 2500px; margin: 0 auto"></div>
+                                <div id="sd-grade" style="width: 900px; height: 2500px; margin: 0 auto"></div>
                             </div>
+                           
                             <div style="height: 900px" class="tab-pane" id="smp-content">
                                 <div id="smp" style="width: 900px; height: 1000px; margin: 0 auto"></div>
                             </div>
@@ -220,6 +222,7 @@
                 },
                 series: []
             };
+
             $.get('https://raw.githubusercontent.com/BugisDev/bulukumba-data/master/pendidikan/statistik_pelajar_berdasarkan_jeniskelamin.csv', function(data) {
                 var rows = data.split('\n');
                 var male = [];
@@ -266,6 +269,91 @@
                 Highcharts.chart('smp', optionsSmp);
                 Highcharts.chart('sma', optionsSma);
             });
+
+            var optionsSDGrade = {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: 'Statistik Peserta Didik Berdasarkan Tingkat Pendidikan'
+                },
+                xAxis: {
+                    categories: [],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Jumlah Peserta Didik',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -40,
+                    y: 80,
+                    floating: true,
+                    borderWidth: 1,
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                series: []
+            };
+
+            $.get('https://raw.githubusercontent.com/BugisDev/bulukumba-data/master/pendidikan/statistik_pelajar_berdasarkan_tingkat_pendidikan.csv', function(data) {
+                var rows = data.split('\n');
+                var grade1 = [];
+                var grade2 = [];
+                var grade3 = [];
+                var grade4 = [];
+                var grade5 = [];
+                var grade6 = [];
+
+                $.each(rows, function(i, row) {
+                    var columns = row.split(',');
+                    if (i == 0) {
+                        return;
+                    }
+                    let school = columns[1];
+                    if (typeof school !== 'undefined' && (school.includes('SD'))) {
+                        optionsSDGrade.xAxis.categories.push(school);
+                        grade1.push(parseInt(columns[3]));
+                        grade2.push(parseInt(columns[4]));
+                        grade3.push(parseInt(columns[5]));
+                        grade4.push(parseInt(columns[6]));
+                        grade5.push(parseInt(columns[7]));
+                        grade6.push(parseInt(columns[8]));
+                    }
+                });
+                optionsSDGrade.series = [
+                    {name: 'Kelas 1', data: grade1},
+                    {name: 'Kelas 2', data: grade2},
+                    {name: 'Kelas 3', data: grade3},
+                    {name: 'Kelas 4', data: grade4},
+                    {name: 'Kelas 5', data: grade5},
+                    {name: 'Kelas 6', data: grade6},
+                ];
+
+                //console.log(options);
+                Highcharts.chart('sd-grade', optionsSDGrade);
+            });
+            
         });
         </script>
     </body>
