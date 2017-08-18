@@ -127,7 +127,7 @@
                                     <li class="divider"></li>
                                     <li><a href="#rilau-ale-sd-content" data-toggle="tab">Rilau Ale</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#ujung-bulu-sd-content" data-toggle="tab">Ujung Bulu</a></li>
+                                    <li><a href="#ujung-bulu-sma-content" data-toggle="tab">Ujung Bulu</a></li>
                                     <li class="divider"></li>
                                     <li><a href="#ujung-loe-sd-content" data-toggle="tab">Ujung Loe</a></li>
                                 </ul>
@@ -151,141 +151,79 @@
         <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://bootswatch.com/assets/js/custom.js"></script>
         <script type="text/javascript">
-        $(document).ready(function() {
-            var SDBulukumpa = {
-                chart: {
-                    type: 'bar'
-                },
-                title: {
-                    text: 'Statistik Peserta Didik Berdasarkan Jenis Kelamin (Kec. Bulukumpa)'
-                },
-                xAxis: {
-                    categories: [],
-                    title: {
-                        text: null
-                    }
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Jumlah Peserta Didik',
-                        align: 'high'
-                    },
-                    labels: {
-                        overflow: 'justify'
-                    }
-                },
-                plotOptions: {
-                    bar: {
-                        dataLabels: {
-                            enabled: true
-                        }
-                    }
-                },
-                legend: {
-                    layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'top',
-                    x: -40,
-                    y: 80,
-                    floating: true,
-                    borderWidth: 1,
-                    shadow: true
-                },
-                credits: {
-                    enabled: false
-                },
-                series: []
-            };
-
-            var SDBontobahari = {
-                chart: {
-                    type: 'bar'
-                },
-                title: {
-                    text: 'Statistik Peserta Didik Berdasarkan Jenis Kelamin (Kec. Bontobahari)'
-                },
-                xAxis: {
-                    categories: [],
-                    title: {
-                        text: null
-                    }
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Jumlah Peserta Didik',
-                        align: 'high'
-                    },
-                    labels: {
-                        overflow: 'justify'
-                    }
-                },
-                plotOptions: {
-                    bar: {
-                        dataLabels: {
-                            enabled: true
-                        }
-                    }
-                },
-                legend: {
-                    layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'top',
-                    x: -40,
-                    y: 80,
-                    floating: true,
-                    borderWidth: 1,
-                    shadow: true
-                },
-                credits: {
-                    enabled: false
-                },
-                series: []
-            };
-
-            $.get('https://raw.githubusercontent.com/BugisDev/bulukumba-data/master/pendidikan/statistik_pelajar_berdasarkan_jeniskelamin.csv', function(data) {
-                var rows = data.split('\n');
-                var bulukumpaMale = [];
-                var bulukumpaFemale = [];
-                var bontobahariMale = [];
-                var bontobahariFemale = [];
-                $.each(rows, function(i, row) {
-                    var columns = row.split(',');
-                    if (i == 0) {
-                        return;
-                    }
-                    let school = columns[1];
-                    let kec = columns[2];
-                    if (typeof school !== 'undefined' && (school.includes('SD')) && (kec.includes('Bulukumpa'))) {
-                        SDBulukumpa.xAxis.categories.push(school);
-                        bulukumpaMale.push(parseInt(columns[3]));
-                        bulukumpaFemale.push(parseInt(columns[4]));
-                    }
-                    else if (typeof school !== 'undefined' && (school.includes('SD')) && (kec.includes('Bontobahari'))) {
-                        SDBontobahari.xAxis.categories.push(school);
-                        bontobahariMale.push(parseInt(columns[3]));
-                        bontobahariFemale.push(parseInt(columns[4]));
-                    } 
-                });
-                SDBulukumpa.series = [
-                    {name: 'Laki-Laki', data: bulukumpaMale},
-                    {name: 'Perempuan', data: bulukumpaFemale}
-                ];
-                SDBontobahari.series = [
-                    {name: 'Laki-Laki', data: bontobahariMale},
-                    {name: 'Perempuan', data: bontobahariFemale}
-                ];
-                //console.log(options);
-                Highcharts.chart('bulukumpa-sd-content', SDBulukumpa);
-                Highcharts.chart('bontobahari-sd-content', SDBontobahari);
-            });
-            
-        });
-        </script>
+            $(document).ready(function() {
+                function constructData(title, options, target, level, district) {
+                    var url = 'https://raw.githubusercontent.com/BugisDev/bulukumba-data/master/pendidikan/statistik_pelajar_berdasarkan_jeniskelamin.csv';
+                    var male = [];
+                    var female = [];
+                    $.get(url, function(r) {
+                        var rows = r.split('\n');
+                        $.each(rows, function(i, row) {
+                            if (i === 0) {
+                                return;
+                            }
+                            var columns = row.split(',');
+                            if (columns.length === 1) {
+                                return;
+                            }
+                            if (columns[2].toLowerCase() !== district.toLowerCase()) {
+                                return;
+                            }
+                            if (columns[0].toLowerCase() !== level.toLowerCase()) {
+                                return;
+                            }
+                            let school = columns[1];
+                            options.xAxis.categories.push(school);
+                            male.push(parseInt(columns[3]));
+                            female.push(parseInt(columns[4]))
+                            options.title.text = `${title} - ${columns[2]}`;
+                        });
+                        options.series = [{
+                            name: 'Laki-Laki', data: male
+                        }, {
+                            name: 'Perempuan', data: female
+                        }];
+                        Highcharts.chart(target, options);
+                    });
+                }
         
-        });
+                var title = 'Statistik Peserta Didik Berdasarkan Jenis Kelamin';
+                var opt = {
+                    chart: { type: 'bar' },
+                    title: {},
+                    xAxis: {
+                        categories: [],
+                        title: { text: null }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Jumlah Peserta Didik',
+                            align: 'high'
+                        },
+                        labels: { overflow: 'justify' }
+                    },
+                    plotOptions: {
+                        bar: {
+                            dataLabels: { enabled: true }
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'top',
+                        x: -40,
+                        y: 80,
+                        floating: true,
+                        borderWidth: 1,
+                        shadow: true
+                    },
+                    credits: { enabled: false },
+                    series: []
+                }
+  
+                constructData(title, opt, 'ujung-bulu-sma-content', 'sma', 'kec. ujung bulu');
+            });
         </script>
     </body>
 </html>
-
