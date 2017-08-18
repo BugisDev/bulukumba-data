@@ -53,6 +53,7 @@
             <div class="page-header" id="banner">
                 <div class="row">
                     <div class="col-sm-12">
+                        <h4>Statistik Peserta Didik Berdasarkan Jenis Kelamin</h4>
                         <ul class="nav nav-tabs">
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
@@ -76,18 +77,27 @@
                                     SMP <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#bulukumpa-sd-content" data-toggle="tab">Bulukumpa</a></li>
-                                    <li><a href="#bontobahari-sd-content" data-toggle="tab">Bontobahari</a></li>
-                                    <li><a href="#bontotiro-sd-content" data-toggle="tab">Bontotiro</a></li>
-                                    <li><a href="#gantarang-sd-content" data-toggle="tab">Gantarang</a></li>
-                                    <li><a href="#herlang-sd-content" data-toggle="tab">Herlang</a></li>
-                                    <li><a href="#kajang-sd-content" data-toggle="tab">Kajang</a></li>
-                                    <li><a href="#kindang-sd-content" data-toggle="tab">Kindang</a></li>
-                                    <li><a href="#rilau-ale-sd-content" data-toggle="tab">Rilau Ale</a></li>
-                                    <li><a href="#ujung-bulu-sd-content" data-toggle="tab">Ujung Bulu</a></li>
-                                    <li><a href="#ujung-loe-sd-content" data-toggle="tab">Ujung Loe</a></li>
+                                    <li><a onclick="changeChart('smp', 'kec. bulukumpa');" data-toggle="tab">Bulukumpa</a></li>
+                                    <li><a onclick="changeChart('smp', 'kec. bontobahari');" data-toggle="tab">Bontobahari</a></li>
+                                    <li><a onclick="changeChart('smp', 'kec. bontotiro');" data-toggle="tab">Bontotiro</a></li>
+                                    <li><a onclick="changeChart('smp', 'kec. gantarang');" data-toggle="tab">Gantarang</a></li>
+                                    <li><a onclick="changeChart('smp', 'kec. herlang');" data-toggle="tab">Herlang</a></li>
+                                    <li><a onclick="changeChart('smp', 'kec. kajang');" data-toggle="tab">Kajang</a></li>
+                                    <li><a onclick="changeChart('smp', 'kec. kindang');" data-toggle="tab">Kindang</a></li>
+                                    <li><a onclick="changeChart('smp', 'kec. rilau ale');" data-toggle="tab">Rilau Ale</a></li>
+                                    <li><a onclick="changeChart('smp', 'kec. ujung bulu');" data-toggle="tab">Ujung Bulu</a></li>
+                                    <li><a onclick="changeChart('smp', 'kec. ujung loe');" data-toggle="tab">Ujung Loe</a></li>
                                 </ul>
                             </li>
+                            <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                                        SLB <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a onclick="changeChart('slb', 'kec. herlang');" data-toggle="tab">Herlang</a></li>
+                                        <li><a onclick="changeChart('slb', 'kec. ujung bulu');" data-toggle="tab">Ujung Bulu</a></li>
+                                    </ul>
+                                </li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
                                     SMA <span class="caret"></span>
@@ -124,7 +134,7 @@
                             </li>
                         </ul>
                         <div id="myTabContent" class="tab-content">
-                            <div style="height: 2500px"class="tab-pane active" id="container">
+                            <div style="min-height: 300px" class="tab-pane active" id="chart-container">
                             </div>
                         </div>
                     </div>
@@ -137,7 +147,6 @@
         <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://bootswatch.com/assets/js/custom.js"></script>
         <script type="text/javascript">
-        var title = 'Statistik Peserta Didik Berdasarkan Jenis Kelamin';
         var opt = {
             chart: { type: 'bar' },
             title: {},
@@ -171,7 +180,7 @@
             credits: { enabled: false },
             series: []
         }
-        function constructData(title, options, target, level, district) {
+        function constructData(options, target, level, district) {
             var url = 'https://raw.githubusercontent.com/BugisDev/bulukumba-data/master/pendidikan/statistik_pelajar_berdasarkan_jeniskelamin.csv';
             var male = [];
             var female = [];
@@ -196,24 +205,26 @@
                     options.xAxis.categories.push(school);
                     male.push(parseInt(columns[3]));
                     female.push(parseInt(columns[4]))
-                    options.title.text = `${title} - ${columns[2]}`;
+                    options.title.text = `${columns[0]} - ${columns[2]}`;
                 });
                 options.series = [{
                     name: 'Laki-Laki', data: male
                 }, {
                     name: 'Perempuan', data: female
                 }];
-                console.log(district);
+                // set height target based on categories length
+                $(`#${target}`).height(`${(options.xAxis.categories.length+1)*50}`);
+                // display chart
                 Highcharts.chart(target, options);
             });
         }
         function changeChart(level, district) {
-            constructData(title, opt, 'container', level, district);
+            constructData( opt, 'chart-container', level, district);
         }
         </script>
         <script type="text/javascript">
             $(document).ready(function() {
-                constructData(title, opt, 'container', 'sd', 'kec. bulukumpa');
+                constructData(opt, 'chart-container', 'sd', 'kec. bulukumpa');
             });
         </script>
     </body>
