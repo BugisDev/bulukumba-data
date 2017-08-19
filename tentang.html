@@ -4,15 +4,32 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Bulukumba Data">
-        <meta name="keywords" content="Bulukumba, Data, Statistik">
+        <meta name="description" content="Data Pendidikan">
+        <meta name="keywords" content="Bulukumba, Data, Statistik, Pendidikan">
         <meta name="author" content="BugisDev <bugisdev@gmail.com>">
-        <title>Bulukumba Data</title>
+        <meta property="og:image" content="https://raw.githubusercontent.com/BugisDev/bulukumba-data/master/assets/images/bulukumda-data.png">
+        <title>Bulukumba Data | Pendidikan</title>
         <link rel="stylesheet" href="https://bootswatch.com/paper/bootstrap.css" media="screen">
         <link rel="stylesheet" href="https://bootswatch.com/assets/css/custom.min.css" media="screen">
     </head>
-    <body>
+    <style>
+        #tentang {
+            min-height: 100%; 
+            min-height: 100vh;     
 
+            display: flex;
+            align-items: center;
+        }
+        .page-header h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .page-header p {
+            text-align: justify;
+            font-size: 18px; 
+        }
+    </style>
+    <body>
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -32,7 +49,7 @@
                                 <li><a href="./kesehatan.html">Kesehatan</a></li>
                             </ul>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="./tentang.html">Tentang</a>
                         </li>
                         <li>
@@ -48,19 +65,25 @@
                 </div>
             </div>
         </div>
-
+        <section id="tentang">
+            <div class="container">
+                <div class="page-header" id="banner">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3 col-sm-12">
+                            <h3>- Bulukumba Data -</h3>
+                            <p>Bulukumba data adalah sebuah project dari BugisDev untuk mengumpulkan data-data
+                                di kabupaten Bulukumba. Beberapa target dari project ini diantaranya melakukan publikasi infografis
+                                data statistik beserta analisisnya, dari hasil publikasi diharapkan berbagai pihak mampu memahami
+                                kondisi di kabupaten Bulukumba. Selain itu, juga diharapkan mampu menjadi acuan dari pihak terkait
+                                untuk mengambil langkah yang tepat untuk memajukan kabupaten Bulukumba.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="https://bootswatch.com/assets/js/custom.js"></script>
-        <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-104500352-2', 'auto');
-        ga('send', 'pageview');
-        </script>
     </body>
 </html>
-
