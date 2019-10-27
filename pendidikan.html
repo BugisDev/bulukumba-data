@@ -1,232 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Data Pendidikan">
-        <meta name="keywords" content="Bulukumba, Data, Statistik, Pendidikan">
-        <meta name="author" content="BugisDev <bugisdev@gmail.com>">
-        <meta property="og:image" content="https://raw.githubusercontent.com/BugisDev/bulukumba-data/master/assets/images/bulukumda-data.png">
-        <title>Bulukumba Data | Pendidikan</title>
-        <link rel="stylesheet" href="https://bootswatch.com/paper/bootstrap.css" media="screen">
-        <link rel="stylesheet" href="https://bootswatch.com/assets/css/custom.min.css" media="screen">
-    </head>
-    <body>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Data Pendidikan">
+  <meta name="keywords" content="Bulukumba, Data, Statistik, Pendidikan">
+  <meta name="author" content="BugisDev <bugisdev@gmail.com>">
+  <meta property="og:image" content="https://raw.githubusercontent.com/BugisDev/bulukumba-data/master/assets/images/bulukumda-data.png">
+  <title>Bulukumba Data | Pendidikan</title>
+  <link rel="stylesheet" href="/assets/css/bulma.min.css" media="screen">
+</head>
+<body>
 
-        <div class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a href="/bulukumba-data" class="navbar-brand">Bulukumba Data</a>
-                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse" id="navbar-main">
-                    <ul class="nav navbar-nav">
-                        <li class="active dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="kategori">Kategori <span class="caret"></span></a>
-                            <ul class="dropdown-menu" aria-labelledby="themes">
-                                <li><a href="./pendidikan.html">Pendidikan</a></li>
-                                <li><a href="./kesehatan.html">Kesehatan</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="./tentang.html">Tentang</a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/BugisDev/bulukumba-data/issues">Kontribusi</a>
-                        </li>
-                    </ul>
+  <div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img src="http://bugisdev.com/images/logo.png" width="112" height="28">
+        </a>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="https://bugisdev.github.io/">Visit BugisDev</a></li>
-                        <li><a href="https://github.com/BugisDev">@github</a></li>
-                    </ul>
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
 
-                </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/">
+            Home
+          </a>
+
+          <a class="navbar-item" href="https://github.com/BugisDev/bulukumba-data">
+            Datasets
+          </a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Viz
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="./pendidikan.html">
+                Pendidikan
+              </a>
+              <a class="navbar-item" href="./kesehatan.html">
+                Kesehatan
+              </a>
+              <a class="navbar-item" href="./pertanian.html">
+                Pertanian
+              </a>
             </div>
+          </div>
         </div>
 
-        <div class="container">
-            <div class="page-header" id="banner">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h4>Statistik Peserta Didik Berdasarkan Jenis Kelamin</h4>
-                        <ul class="nav nav-tabs">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
-                                    SD <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a onclick="changeChart('sd', 'kec. bulukumpa');" data-toggle="tab">Bulukumpa</a></li>
-                                    <li><a onclick="changeChart('sd', 'kec. bontobahari');" data-toggle="tab">Bontobahari</a></li>
-                                    <li><a onclick="changeChart('sd', 'Kec. Bontotiro');" data-toggle="tab">Bontotiro</a></li>
-                                    <li><a onclick="changeChart('sd', 'kec. Gantarang');" data-toggle="tab">Gantarang</a></li>
-                                    <li><a onclick="changeChart('sd', 'kec. herlang');" data-toggle="tab">Herlang</a></li>
-                                    <li><a onclick="changeChart('sd', 'kec. kajang');" data-toggle="tab">Kajang</a></li>
-                                    <li><a onclick="changeChart('sd', 'kec. kindang');" data-toggle="tab">Kindang</a></li>
-                                    <li><a onclick="changeChart('sd', 'kec. rilau ale');" data-toggle="tab">Rilau Ale</a></li>
-                                    <li><a onclick="changeChart('sd', 'kec. ujung bulu');" data-toggle="tab">Ujung Bulu</a></li>
-                                    <li><a onclick="changeChart('sd', 'kec. ujung loe');" data-toggle="tab">Ujung Loe</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
-                                    SMP <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a onclick="changeChart('smp', 'kec. bulukumpa');" data-toggle="tab">Bulukumpa</a></li>
-                                    <li><a onclick="changeChart('smp', 'kec. bontobahari');" data-toggle="tab">Bontobahari</a></li>
-                                    <li><a onclick="changeChart('smp', 'kec. bontotiro');" data-toggle="tab">Bontotiro</a></li>
-                                    <li><a onclick="changeChart('smp', 'kec. gantarang');" data-toggle="tab">Gantarang</a></li>
-                                    <li><a onclick="changeChart('smp', 'kec. herlang');" data-toggle="tab">Herlang</a></li>
-                                    <li><a onclick="changeChart('smp', 'kec. kajang');" data-toggle="tab">Kajang</a></li>
-                                    <li><a onclick="changeChart('smp', 'kec. kindang');" data-toggle="tab">Kindang</a></li>
-                                    <li><a onclick="changeChart('smp', 'kec. rilau ale');" data-toggle="tab">Rilau Ale</a></li>
-                                    <li><a onclick="changeChart('smp', 'kec. ujung bulu');" data-toggle="tab">Ujung Bulu</a></li>
-                                    <li><a onclick="changeChart('smp', 'kec. ujung loe');" data-toggle="tab">Ujung Loe</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
-                                        SLB <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a onclick="changeChart('slb', 'kec. herlang');" data-toggle="tab">Herlang</a></li>
-                                        <li><a onclick="changeChart('slb', 'kec. ujung bulu');" data-toggle="tab">Ujung Bulu</a></li>
-                                    </ul>
-                                </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
-                                    SMA <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a onclick="changeChart('sma', 'kec. bulukumpa');" data-toggle="tab">Bulukumpa</a></li>
-                                    <li><a onclick="changeChart('sma', 'kec. bontobahari');" data-toggle="tab">Bontobahari</a></li>
-                                    <li><a onclick="changeChart('sma', 'kec. bontotiro');" data-toggle="tab">Bontotiro</a></li>
-                                    <li><a onclick="changeChart('sma', 'kec. gantarang');" data-toggle="tab">Gantarang</a></li>
-                                    <li><a onclick="changeChart('sma', 'kec. herlang');" data-toggle="tab">Herlang</a></li>
-                                    <li><a onclick="changeChart('sma', 'kec. kajang');" data-toggle="tab">Kajang</a></li>
-                                    <li><a onclick="changeChart('sma', 'kec. kindang');" data-toggle="tab">Kindang</a></li>
-                                    <li><a onclick="changeChart('sma', 'kec. rilau ale');" data-toggle="tab">Rilau Ale</a></li>
-                                    <li><a onclick="changeChart('sma', 'kec. ujung bulu');" data-toggle="tab">Ujung Bulu</a></li>
-                                    <li><a onclick="changeChart('sma', 'kec. ujung loe');" data-toggle="tab">Ujung Loe</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
-                                    SMK <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a onclick="changeChart('smk', 'kec. bulukumpa');" data-toggle="tab">Bulukumpa</a></li>
-                                    <li><a onclick="changeChart('smk', 'kec. bontobahari');" data-toggle="tab">Bontobahari</a></li>
-                                    <li><a onclick="changeChart('smk', 'kec. bontotiro');" data-toggle="tab">Bontotiro</a></li>
-                                    <li><a onclick="changeChart('smk', 'kec. gantarang');" data-toggle="tab">Gantarang</a></li>
-                                    <li><a onclick="changeChart('smk', 'kec. herlang');" data-toggle="tab">Herlang</a></li>
-                                    <li><a onclick="changeChart('smk', 'kec. kajang');" data-toggle="tab">Kajang</a></li>
-                                    <li><a onclick="changeChart('smk', 'kec. kindang');" data-toggle="tab">Kindang</a></li>
-                                    <li><a onclick="changeChart('smk', 'kec. rilau ale');" data-toggle="tab">Rilau Ale</a></li>
-                                    <li><a onclick="changeChart('smk', 'kec. ujung bulu');" data-toggle="tab">Ujung Bulu</a></li>
-                                    <li><a onclick="changeChart('smk', 'kec. ujung loe');" data-toggle="tab">Ujung Loe</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <div id="myTabContent" class="tab-content">
-                            <div style="min-height: 300px" class="tab-pane active" id="chart-container">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
+    </nav>
+  </div>
 
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://bootswatch.com/assets/js/custom.js"></script>
-        <script type="text/javascript">
-        var opt = {
-            chart: { type: 'bar' },
-            title: {},
-            xAxis: {
-                categories: [],
-                title: { text: null }
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Jumlah Peserta Didik',
-                    align: 'high'
-                },
-                labels: { overflow: 'justify' }
-            },
-            plotOptions: {
-                bar: {
-                    dataLabels: { enabled: true }
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'top',
-                x: -40,
-                y: 80,
-                floating: true,
-                borderWidth: 1,
-                shadow: true
-            },
-            credits: { enabled: false },
-            series: []
+  <div class="container">
+    <div class="page-header" id="banner">
+      <div class="row">
+        <div class="col-sm-12">
+          <h4>Statistik Peserta Didik Berdasarkan Jenis Kelamin</h4>
+          <ul class="nav nav-tabs">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                SD <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a onclick="changeChart('sd', 'kec. bulukumpa');" data-toggle="tab">Bulukumpa</a></li>
+                <li><a onclick="changeChart('sd', 'kec. bontobahari');" data-toggle="tab">Bontobahari</a></li>
+                <li><a onclick="changeChart('sd', 'Kec. Bontotiro');" data-toggle="tab">Bontotiro</a></li>
+                <li><a onclick="changeChart('sd', 'kec. Gantarang');" data-toggle="tab">Gantarang</a></li>
+                <li><a onclick="changeChart('sd', 'kec. herlang');" data-toggle="tab">Herlang</a></li>
+                <li><a onclick="changeChart('sd', 'kec. kajang');" data-toggle="tab">Kajang</a></li>
+                <li><a onclick="changeChart('sd', 'kec. kindang');" data-toggle="tab">Kindang</a></li>
+                <li><a onclick="changeChart('sd', 'kec. rilau ale');" data-toggle="tab">Rilau Ale</a></li>
+                <li><a onclick="changeChart('sd', 'kec. ujung bulu');" data-toggle="tab">Ujung Bulu</a></li>
+                <li><a onclick="changeChart('sd', 'kec. ujung loe');" data-toggle="tab">Ujung Loe</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                SMP <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a onclick="changeChart('smp', 'kec. bulukumpa');" data-toggle="tab">Bulukumpa</a></li>
+                <li><a onclick="changeChart('smp', 'kec. bontobahari');" data-toggle="tab">Bontobahari</a></li>
+                <li><a onclick="changeChart('smp', 'kec. bontotiro');" data-toggle="tab">Bontotiro</a></li>
+                <li><a onclick="changeChart('smp', 'kec. gantarang');" data-toggle="tab">Gantarang</a></li>
+                <li><a onclick="changeChart('smp', 'kec. herlang');" data-toggle="tab">Herlang</a></li>
+                <li><a onclick="changeChart('smp', 'kec. kajang');" data-toggle="tab">Kajang</a></li>
+                <li><a onclick="changeChart('smp', 'kec. kindang');" data-toggle="tab">Kindang</a></li>
+                <li><a onclick="changeChart('smp', 'kec. rilau ale');" data-toggle="tab">Rilau Ale</a></li>
+                <li><a onclick="changeChart('smp', 'kec. ujung bulu');" data-toggle="tab">Ujung Bulu</a></li>
+                <li><a onclick="changeChart('smp', 'kec. ujung loe');" data-toggle="tab">Ujung Loe</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                SLB <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a onclick="changeChart('slb', 'kec. herlang');" data-toggle="tab">Herlang</a></li>
+                <li><a onclick="changeChart('slb', 'kec. ujung bulu');" data-toggle="tab">Ujung Bulu</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                SMA <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a onclick="changeChart('sma', 'kec. bulukumpa');" data-toggle="tab">Bulukumpa</a></li>
+                <li><a onclick="changeChart('sma', 'kec. bontobahari');" data-toggle="tab">Bontobahari</a></li>
+                <li><a onclick="changeChart('sma', 'kec. bontotiro');" data-toggle="tab">Bontotiro</a></li>
+                <li><a onclick="changeChart('sma', 'kec. gantarang');" data-toggle="tab">Gantarang</a></li>
+                <li><a onclick="changeChart('sma', 'kec. herlang');" data-toggle="tab">Herlang</a></li>
+                <li><a onclick="changeChart('sma', 'kec. kajang');" data-toggle="tab">Kajang</a></li>
+                <li><a onclick="changeChart('sma', 'kec. kindang');" data-toggle="tab">Kindang</a></li>
+                <li><a onclick="changeChart('sma', 'kec. rilau ale');" data-toggle="tab">Rilau Ale</a></li>
+                <li><a onclick="changeChart('sma', 'kec. ujung bulu');" data-toggle="tab">Ujung Bulu</a></li>
+                <li><a onclick="changeChart('sma', 'kec. ujung loe');" data-toggle="tab">Ujung Loe</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                SMK <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a onclick="changeChart('smk', 'kec. bulukumpa');" data-toggle="tab">Bulukumpa</a></li>
+                <li><a onclick="changeChart('smk', 'kec. bontobahari');" data-toggle="tab">Bontobahari</a></li>
+                <li><a onclick="changeChart('smk', 'kec. bontotiro');" data-toggle="tab">Bontotiro</a></li>
+                <li><a onclick="changeChart('smk', 'kec. gantarang');" data-toggle="tab">Gantarang</a></li>
+                <li><a onclick="changeChart('smk', 'kec. herlang');" data-toggle="tab">Herlang</a></li>
+                <li><a onclick="changeChart('smk', 'kec. kajang');" data-toggle="tab">Kajang</a></li>
+                <li><a onclick="changeChart('smk', 'kec. kindang');" data-toggle="tab">Kindang</a></li>
+                <li><a onclick="changeChart('smk', 'kec. rilau ale');" data-toggle="tab">Rilau Ale</a></li>
+                <li><a onclick="changeChart('smk', 'kec. ujung bulu');" data-toggle="tab">Ujung Bulu</a></li>
+                <li><a onclick="changeChart('smk', 'kec. ujung loe');" data-toggle="tab">Ujung Loe</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div style="min-height: 300px" class="tab-pane active" id="chart-container">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://bootswatch.com/assets/js/custom.js"></script>
+  <script type="text/javascript">
+    var opt = {
+      chart: { type: 'bar' },
+      title: {},
+      xAxis: {
+        categories: [],
+        title: { text: null }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Jumlah Peserta Didik',
+          align: 'high'
+        },
+        labels: { overflow: 'justify' }
+      },
+      plotOptions: {
+        bar: {
+          dataLabels: { enabled: true }
         }
-        function constructData(options, target, level, district) {
-            var url = 'https://raw.githubusercontent.com/BugisDev/bulukumba-data/master/pendidikan/statistik_pelajar_berdasarkan_jeniskelamin.csv';
-            var male = [];
-            var female = [];
-            options.xAxis.categories = [];
-            $.get(url, function(r) {
-                var rows = r.split('\n');
-                $.each(rows, function(i, row) {
-                    if (i === 0) {
-                        return;
-                    }
-                    var columns = row.split(',');
-                    if (columns.length === 1) {
-                        return;
-                    }
-                    if (columns[2].toLowerCase() !== district.toLowerCase()) {
-                        return;
-                    }
-                    if (columns[0].toLowerCase() !== level.toLowerCase()) {
-                        return;
-                    }
-                    let school = columns[1];
-                    options.xAxis.categories.push(school);
-                    male.push(parseInt(columns[3]));
-                    female.push(parseInt(columns[4]))
-                    options.title.text = `${columns[0]} - ${columns[2]}`;
-                });
-                options.series = [{
-                    name: 'Laki-Laki', data: male
-                }, {
-                    name: 'Perempuan', data: female
-                }];
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -40,
+        y: 80,
+        floating: true,
+        borderWidth: 1,
+        shadow: true
+      },
+      credits: { enabled: false },
+      series: []
+    }
+    function constructData(options, target, level, district) {
+      var url = 'https://raw.githubusercontent.com/BugisDev/bulukumba-data/master/pendidikan/statistik_pelajar_berdasarkan_jeniskelamin.csv';
+      var male = [];
+      var female = [];
+      options.xAxis.categories = [];
+      $.get(url, function(r) {
+        var rows = r.split('\n');
+        $.each(rows, function(i, row) {
+          if (i === 0) {
+            return;
+          }
+          var columns = row.split(',');
+          if (columns.length === 1) {
+            return;
+          }
+          if (columns[2].toLowerCase() !== district.toLowerCase()) {
+            return;
+          }
+          if (columns[0].toLowerCase() !== level.toLowerCase()) {
+            return;
+          }
+          let school = columns[1];
+          options.xAxis.categories.push(school);
+          male.push(parseInt(columns[3]));
+          female.push(parseInt(columns[4]))
+          options.title.text = `${columns[0]} - ${columns[2]}`;
+        });
+        options.series = [{
+          name: 'Laki-Laki', data: male
+        }, {
+          name: 'Perempuan', data: female
+        }];
                 // set height target based on categories length
                 $(`#${target}`).height(`${(options.xAxis.categories.length+1)*50}`);
                 // display chart
                 Highcharts.chart(target, options);
-            });
-        }
-        function changeChart(level, district) {
-            constructData( opt, 'chart-container', level, district);
-        }
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                constructData(opt, 'chart-container', 'sd', 'kec. bulukumpa');
-            });
-        </script>
-    </body>
+              });
+    }
+    function changeChart(level, district) {
+      constructData( opt, 'chart-container', level, district);
+    }
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      constructData(opt, 'chart-container', 'sd', 'kec. bulukumpa');
+    });
+  </script>
+</body>
 </html>

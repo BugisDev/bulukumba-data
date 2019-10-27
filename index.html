@@ -1,66 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Bulukumba Data">
-        <meta name="keywords" content="Bulukumba, Data, Statistik">
-        <meta name="author" content="BugisDev <bugisdev@gmail.com>">
-        <title>Bulukumba Data</title>
-        <link rel="stylesheet" href="https://bootswatch.com/paper/bootstrap.css" media="screen">
-        <link rel="stylesheet" href="https://bootswatch.com/assets/css/custom.min.css" media="screen">
-    </head>
-    <body>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bulukumba Data">
+  <meta name="keywords" content="Bulukumba, Data, Statistik">
+  <meta name="author" content="BugisDev <bugisdev@gmail.com>">
+  <title>Bulukumba Data</title>
+  <link rel="stylesheet" href="/assets/css/bulma.min.css" media="screen">
+</head>
+<body>
 
-        <div class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a href="/bulukumba-data" class="navbar-brand">Bulukumba Data</a>
-                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse" id="navbar-main">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="kategori">Kategori <span class="caret"></span></a>
-                            <ul class="dropdown-menu" aria-labelledby="themes">
-                                <li><a href="./pendidikan.html">Pendidikan</a></li>
-                                <li><a href="./kesehatan.html">Kesehatan</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="./tentang.html">Tentang</a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/BugisDev/bulukumba-data/issues">Kontribusi</a>
-                        </li>
-                    </ul>
+  <div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img src="http://bugisdev.com/images/logo.png" width="112" height="28">
+        </a>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="https://bugisdev.github.io/">Visit BugisDev</a></li>
-                        <li><a href="https://github.com/BugisDev">@github</a></li>
-                    </ul>
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
 
-                </div>
-            </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item" href="/">
+            Home
+          </a>
+
+          <a class="navbar-item" href="https://github.com/BugisDev/bulukumba-data">
+            Datasets
+          </a>
+
         </div>
 
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="https://bootswatch.com/assets/js/custom.js"></script>
-        <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      </div>
+    </nav>
+  </div>
 
-        ga('create', 'UA-104500352-2', 'auto');
-        ga('send', 'pageview');
-        </script>
-    </body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Bulukumba Data
+        </h1>
+        <h2 class="subtitle">
+          Datasets for Kab. Bulukumba
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Pendidikan
+      </h1>
+      <h2 class="subtitle">
+        Semua data di bidang pendidikan baik yang telah di kompilasi ataupun masih berbentuk raw data. Tersedia dalam bentuk json/csv.
+      </h2>
+      <ul>
+        <li><a href="https://github.com/BugisDev/bulukumba-data/blob/master/pendidikan/jumlah_pd.csv">Jumlah Peserta Didik 2014-2015</a> untuk SMK N 1 Bulukumba, SMA N 1 Bulukumba, SMA N 8 Bulukumba</li>
+        <li><a href="https://github.com/BugisDev/bulukumba-data/blob/master/pendidikan/statistik_pelajar_berdasarkan_jeniskelamin.csv">Statistik Gender Per Sekolah sekabupaten bulukumba</a>, terhitung tahun ajaran 2016 semester genap</li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-104500352-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
 </html>
 
